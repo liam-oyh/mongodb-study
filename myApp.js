@@ -32,14 +32,33 @@ const createAndSavePerson = (done) => {
         });
 };
 
-
+ var arrayOfPeople = [{
+    name: "John Wick",
+    age: 33,
+    favoriteFoods:['walnut', "Tims"]
+  },{
+    name: "Bruce Wayne",
+    age: 34,
+    favoriteFoods:['rat', "joker"]
+  }];
+   
 
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+ Person.create(arrayOfPeople, function(err, data){
+  if (err) return console.error(err);
+  done(null, data);
+        });
+ 
 };
 
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+  Person.find({
+    name: personName
+  }, function(err, data) {
+    if (err) return console.error(err);
+    done(null, data);
+  }
+             )
 };
 
 const findOneByFood = (food, done) => {
